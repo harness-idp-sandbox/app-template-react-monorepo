@@ -2,11 +2,13 @@ locals {
   tags = {
     Project     = var.project_slug
     Environment = var.environment
+    CreatedFor  = HarnessPOV
   }
 }
 
+resource "random_id" "suffix" { byte_length = 4 } # 8 hex chars
 resource "aws_s3_bucket" "site" {
-  bucket        = "${var.project_slug}-${var.environment}-site"
+  bucket        = "${var.project_slug}-${var.environment}-${random_id.suffix.hex}-site"
   force_destroy = true
   tags          = local.tags
 }
