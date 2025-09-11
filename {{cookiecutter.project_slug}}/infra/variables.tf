@@ -8,6 +8,6 @@ variable "environment" {
   default = "{{ cookiecutter.environment_name }}"
 }
 variable "aws_region" {
-  type = string
+  type    = string
   default = "{{ cookiecutter.aws_region }}"
 }

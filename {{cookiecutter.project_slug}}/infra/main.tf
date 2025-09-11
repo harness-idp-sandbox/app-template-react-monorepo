@@ -46,15 +46,15 @@ data "aws_iam_policy_document" "s3_policy" {
 }
 
 resource "aws_s3_bucket_policy" "site" {
-  bucket = aws_s3_bucket.site.id
-  policy = data.aws_iam_policy_document.s3_policy.json
+  bucket     = aws_s3_bucket.site.id
+  policy     = data.aws_iam_policy_document.s3_policy.json
   depends_on = [aws_cloudfront_distribution.cdn]
 }
 
 resource "aws_cloudfront_distribution" "cdn" {
-  enabled               = true
-  default_root_object   = "index.html"
-  wait_for_deployment   = true 
+  enabled             = true
+  default_root_object = "index.html"
+  wait_for_deployment = true
 
   origin {
     domain_name              = aws_s3_bucket.site.bucket_regional_domain_name
