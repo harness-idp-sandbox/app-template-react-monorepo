@@ -2,7 +2,6 @@ resource "random_id" "suffix" { byte_length = 4 } # 8 hex chars
 resource "aws_s3_bucket" "site" {
   bucket        = "${var.project_slug}-${var.environment}-${random_id.suffix.hex}-site"
   force_destroy = true
-  tags          = local.tags
 }
 
 resource "aws_s3_bucket_ownership_controls" "own" {
@@ -87,7 +86,6 @@ resource "aws_cloudfront_distribution" "cdn" {
     cloudfront_default_certificate = true
   }
 
-  tags = local.tags
 }
 
 output "bucket_name" {
