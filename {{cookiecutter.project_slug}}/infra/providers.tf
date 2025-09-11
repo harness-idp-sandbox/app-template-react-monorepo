@@ -5,5 +5,13 @@ terraform {
   }
 }
 provider "aws" {
-  region = var.aws_region # <-- picks up value from env/terraform.tfvars
+  region = var.aws_region
+
+  default_tags {
+    tags = {
+      Project     = var.project_slug
+      Environment = var.environment
+      CreatedFor  = "HarnessPOV"
+    }
+  }
 }

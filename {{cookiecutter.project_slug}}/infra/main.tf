@@ -1,11 +1,3 @@
-locals {
-  tags = {
-    Project     = var.project_slug
-    Environment = var.environment
-    CreatedFor  = "HarnessPOV"
-  }
-}
-
 resource "random_id" "suffix" { byte_length = 4 } # 8 hex chars
 resource "aws_s3_bucket" "site" {
   bucket        = "${var.project_slug}-${var.environment}-${random_id.suffix.hex}-site"
@@ -29,7 +21,7 @@ resource "aws_s3_bucket_public_access_block" "pab" {
 }
 
 resource "aws_cloudfront_origin_access_control" "oac" {
-  name                              = "${var.project_slug}-${var.environment}-oac"
+  name                              = "${var.project_slug}-${var.environment}-${random_id.suffix.hex}-oac"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
@@ -56,11 +48,13 @@ data "aws_iam_policy_document" "s3_policy" {
 resource "aws_s3_bucket_policy" "site" {
   bucket = aws_s3_bucket.site.id
   policy = data.aws_iam_policy_document.s3_policy.json
+  depends_on = [aws_cloudfront_distribution.cdn]
 }
 
 resource "aws_cloudfront_distribution" "cdn" {
-  enabled             = true
-  default_root_object = "index.html"
+  enabled               = true
+  default_root_object   = "index.html"
+  wait_for_deployment   = true 
 
   origin {
     domain_name              = aws_s3_bucket.site.bucket_regional_domain_name
