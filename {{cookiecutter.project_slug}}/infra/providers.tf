@@ -1,3 +1,4 @@
+# providers.tf
 terraform {
   required_providers {
     aws    = { source = "hashicorp/aws", version = "~> 5.0" }
@@ -12,6 +13,7 @@ provider "aws" {
       Project     = var.project_slug
       Environment = var.environment
       CreatedFor  = "HarnessPOV"
+      ManagedBy   = "TerraformByHarness"
     }
   }
 }

@@ -1,3 +1,4 @@
+# main.tf
 resource "random_id" "suffix" { byte_length = 4 } # 8 hex chars
 resource "aws_s3_bucket" "site" {
   bucket        = "${var.project_slug}-${var.environment}-${random_id.suffix.hex}-site"
@@ -18,7 +19,10 @@ resource "aws_s3_bucket_public_access_block" "pab" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
-
+resource "aws_s3_bucket_server_side_encryption_configuration" "site" {
+  bucket = aws_s3_bucket.site.id
+  rule { apply_server_side_encryption_by_default { sse_algorithm = "AES256" } }
+}
 resource "aws_cloudfront_origin_access_control" "oac" {
   name                              = "${var.project_slug}-${var.environment}-${random_id.suffix.hex}-oac"
   origin_access_control_origin_type = "s3"
@@ -86,16 +90,4 @@ resource "aws_cloudfront_distribution" "cdn" {
     cloudfront_default_certificate = true
   }
 
-}
-
-output "bucket_name" {
-  value = aws_s3_bucket.site.bucket
-}
-
-output "cloudfront_distribution" {
-  value = aws_cloudfront_distribution.cdn.id
-}
-
-output "cloudfront_domain" {
-  value = aws_cloudfront_distribution.cdn.domain_name
 }

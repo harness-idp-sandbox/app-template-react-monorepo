@@ -1,3 +1,4 @@
+# variables.tf
 variable "project_slug" {
   type    = string
   default = "{{ cookiecutter.project_slug }}"
