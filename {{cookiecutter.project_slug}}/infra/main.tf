@@ -21,7 +21,14 @@ resource "aws_s3_bucket_public_access_block" "pab" {
 }
 resource "aws_s3_bucket_server_side_encryption_configuration" "site" {
   bucket = aws_s3_bucket.site.id
-  rule { apply_server_side_encryption_by_default { sse_algorithm = "AES256" } }
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+    # Optional; only matters for KMS. Safe to omit here.
+    # bucket_key_enabled = false
+  }
 }
 resource "aws_cloudfront_origin_access_control" "oac" {
   name                              = "${var.project_slug}-${var.environment}-${random_id.suffix.hex}-oac"

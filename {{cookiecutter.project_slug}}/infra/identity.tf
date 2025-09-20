@@ -4,7 +4,7 @@ data "aws_partition" "current" {}
 
 locals {
   account_id = data.aws_caller_identity.current.account_id
-  partition  = data.aws_partition.current.partition   # aws / aws-us-gov / aws-cn
+  partition  = data.aws_partition.current.partition # aws / aws-us-gov / aws-cn
 }
 
 # Example usage:
