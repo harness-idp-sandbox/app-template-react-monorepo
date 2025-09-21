@@ -6,5 +6,6 @@
   "aws_region": "us-east-1",
   "github_org": "harness-idp-sandbox",
   "github_repo": "{{ cookiecutter.project_slug }}",
-  "environment_name": "dev"
+  "environment_name": "dev",
+  "github_team": "platform-team"
 }

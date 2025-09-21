@@ -9,8 +9,8 @@
 ## Quick links
 
 - **Repository path:** `/{{ cookiecutter.project_slug }}`
-- **Open PRs (search):** https://github.com/ORG/REPO/pulls?q=is%3Apr+{{ cookiecutter.project_slug }}
-- **Backstage/IDP catalog entry:** _(add link once created)_
+- **Open PRs (search):** https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.project_slug }}/pulls?q=is%3Apr+{{ cookiecutter.project_slug }}
+- **Developer Portal catalog entry:** _(link once created)_
 - **Issue tracker:** _(add link or JIRA project)_
 
 ## Environments & URLs
@@ -73,6 +73,7 @@ Create `.env` files as needed (`.env`, `.env.development`, `.env.production`):
 - **PRs:** merging to `{{ cookiecutter.base_branch | default('main') }}` triggers build/deploy (configure in CI/CD).
 - **Artifact:** static SPA or container image (document what you choose).
 - **Runtime config:** prefer env-driven config and inject at build/deploy time.
+- **Approvals:** PR merges and/or ServiceNow/Jira change tickets may gate production deploys.
 
 ## Observability (fill in)
 
@@ -151,6 +152,10 @@ Trade-offs, follow-ups, risks.
 - **Dev server not starting**: check Node version (`node -v`), remove `node_modules`, re-install.
 - **CORS errors**: set `VITE_API_BASE_URL` correctly or add a local proxy.
 - **Blank screen in prod**: ensure correct `base` path in Vite config if app serves from a sub-path.
+
+## Contributing
+- See CODEOWNERS for required reviewers.
+- Follow org PR workflow (branch naming, approvals).
 
 ## License
 

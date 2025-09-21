@@ -1,0 +1,2 @@
+# Owners for this app
+/apps/{{ cookiecutter.project_slug }}/ @ORG/{{ cookiecutter.github_team }}
