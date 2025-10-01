@@ -6,35 +6,29 @@
 apiVersion: harness.io/v1
 kind: Component
 
-# Machine-friendly unique key for this entity (IDP 2.0 uses `identifier`)
+# Machine-friendly unique key
 identifier: {{ cookiecutter.project_slug }}
 
 # Human display name
 name: {{ cookiecutter.project_name }}
 
-# Choose a type taxonomy you like (common: service | website | library)
+# Common types: service | website | library
 type: website
 
-# Owner can be a user or group. For a user email at account scope:
-#   user:account/<email>
-# If you maintain IDP Groups, switch to: group:<groupIdentifier>
+# Owner can be user or group (e.g., group:platform-team)
 owner: user:account/{{ cookiecutter.project_owner }}
 
-# Optional: set org/project scope if you want to bind this to specific Harness scopes.
-# Remove if you prefer account scope.
-# orgIdentifier: default
-# projectIdentifier: Reference_Architecture
-
 metadata:
+  namespace: default
   description: {{ cookiecutter.project_description }}
   annotations:
-    # TechDocs source (dir:. means “use this repo/folder”)
+    # TechDocs looks for mkdocs.yml in this folder
     backstage.io/techdocs-ref: dir:.
 
-    # GitHub project slug for plugins that expect it
+    # Helpful for plugins/deeplinks
     github.com/project-slug: {{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}
 
-    # Where the source lives (monorepo-friendly; adjust branch if needed)
+    # Optional direct link to this app folder on default branch
     backstage.io/source-location: >-
       url:https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}/tree/main/{{ cookiecutter.project_slug }}
 
@@ -50,8 +44,9 @@ metadata:
     - {{ cookiecutter.environment_name }}
 
 spec:
-  # Keep spec minimal; lifecycle is commonly used
   lifecycle: experimental
-  # If you have dependencies, you can add:
+  # Add relationships later if/when they exist:
   # dependsOn:
-  #   - component:some-backend
+  #   - component:default/some-backend
+  # providesApis:
+  #   - api:default/{{ cookiecutter.project_slug }}-api
