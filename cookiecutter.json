@@ -9,5 +9,6 @@
   "github_repo": "{{ cookiecutter.project_slug }}",
   "environment_name": "dev",
   "github_team": "platform-team",
-  "github_monorepo": "monorepo-idp-example"
+  "github_monorepo": "monorepo-idp-example",
+  "connector_ref": "IDP_GitHub_Sandbox_for_Testing"
 }
