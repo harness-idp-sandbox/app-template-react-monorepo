@@ -1,6 +1,7 @@
 {
   "project_name": "Static Web App",
   "project_slug": "{{ cookiecutter.project_name | lower | replace(' ', '-') }}",
+  "idp_identifier": "{{ cookiecutter.project_name|lower|regex_replace('[^a-z0-9_]+', '_')|regex_replace('_+', '_')|regex_replace('^_|_$', '') }}",
   "project_owner": "owner@example.com",
   "project_description": "Project description",
   "aws_region": "us-east-1",
