@@ -23,8 +23,8 @@ metadata:
   namespace: default
   description: {{ cookiecutter.project_description }}
   annotations:
-    # TechDocs looks for mkdocs.yml in this folder
-    backstage.io/techdocs-ref: dir:.
+    # TechDocs looks inside the app repo for this monorepo
+    backstage.io/techdocs-ref: dir:{{ cookiecutter.project_slug }}
 
     # Helpful for plugins/deeplinks
     github.com/project-slug: {{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}
