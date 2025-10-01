@@ -32,17 +32,17 @@ metadata:
     backstage.io/techdocs-ref: dir:.
 
     # GitHub project slug for plugins that expect it
-    github.com/project-slug: {{ cookiecutter.github_org }}/{{ cookiecutter.github_repo }}
+    github.com/project-slug: {{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}
 
     # Where the source lives (monorepo-friendly; adjust branch if needed)
     backstage.io/source-location: >-
-      url:https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_repo }}/tree/main/{{ cookiecutter.project_slug }}
+      url:https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}/tree/main/{{ cookiecutter.project_slug }}
 
   links:
     - title: Source repository
-      url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_repo }}
+      url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}
     - title: App folder (monorepo)
-      url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_repo }}/tree/main/{{ cookiecutter.project_slug }}
+      url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}/tree/main/{{ cookiecutter.project_slug }}
 
   tags:
     - react
