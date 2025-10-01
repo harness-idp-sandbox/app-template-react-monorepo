@@ -7,5 +7,6 @@
   "github_org": "harness-idp-sandbox",
   "github_repo": "{{ cookiecutter.project_slug }}",
   "environment_name": "dev",
-  "github_team": "platform-team"
+  "github_team": "platform-team",
+  "github_monorepo": "monorepo-idp-example"
 }
