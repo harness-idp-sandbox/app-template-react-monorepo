@@ -38,6 +38,8 @@ metadata:
       url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}
     - title: App folder (monorepo)
       url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}/tree/main/{{ cookiecutter.project_slug }}
+    # - title: Website URL
+    #   url: REPLACE_THIS_WITH_THE_GHA_OUTPUT_URL
 
   tags:
     - react
@@ -46,13 +48,13 @@ metadata:
     
 spec:
   lifecycle: experimental
-#  sourceCode:
-#    provider: Github
-#    repoName: {{ cookiecutter.github_monorepo }}
-#    connectorRef: account.{{ cookiecutter.connector_ref }}
-#    branch: main
-#    monoRepo: true
-#    monoRepoSubDirectoryPath: {{ cookiecutter.project_slug }}
+  sourceCode:
+    provider: Github
+    repoName: {{ cookiecutter.github_monorepo }}
+    connectorRef: account.{{ cookiecutter.connector_ref }}
+    branch: main
+    monoRepo: true
+    monoRepoSubDirectoryPath: {{ cookiecutter.project_slug }}
   # Add relationships later if/when they exist:
   # dependsOn:
   #   - component:default/some-backend
