@@ -28,7 +28,8 @@ metadata:
 
     # Helpful for plugins/deeplinks
     github.com/project-slug: {{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}
-    github.com/project-readme-path: {{ cookiecutter.project_slug }}
+    # ATTENTION: UNCOMMENT THIS TO CONFIGURE THE GITHUB PLUGIN
+    # github.com/project-readme-path: {{ cookiecutter.project_slug }}
 
     # Optional direct link to this app folder on default branch
     backstage.io/source-location: >-
@@ -39,6 +40,7 @@ metadata:
       url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}
     - title: App folder (monorepo)
       url: https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_monorepo }}/tree/main/{{ cookiecutter.project_slug }}
+    # ATTENTION: OBTAIN THE WEBSITE URL FROM GHA, REPLACE IT BELOW, AND UNCOMMENT THESE LINES.
     # - title: Website URL
     #   url: REPLACE_THIS_WITH_THE_GHA_OUTPUT_URL
 
